@@ -63,7 +63,6 @@ func TestUnpack(t *testing.T) {
 			expected: "змееед",
 		},
 	} {
-
 		t.Run(fmt.Sprintf("%q", tst.input), func(t *testing.T) {
 			result, err := Unpack(tst.input)
 			require.Equal(t, tst.err, err)
