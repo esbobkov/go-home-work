@@ -42,10 +42,35 @@ func TestList(t *testing.T) {
 		l.MoveToFront(l.Front()) // [80, 60, 40, 10, 30, 50, 70]
 		l.MoveToFront(l.Back())  // [70, 80, 60, 40, 10, 30, 50]
 
-		elems := make([]int, 0, l.Len())
-		for i := l.Front(); i != nil; i = i.Next {
-			elems = append(elems, i.Value.(int))
-		}
-		require.Equal(t, []int{70, 80, 60, 40, 10, 30, 50}, elems)
+		checkList(t, l, []int{70, 80, 60, 40, 10, 30, 50})
 	})
+
+	t.Run("complex 2", func(t *testing.T) {
+		l := NewList()
+
+		el := l.PushBack(20)   // [20]
+		l.Remove(el)           // []
+		back := l.PushBack(30) // [30] 30
+		l.PushFront(10)        // [10, 30]
+		l.MoveToFront(back)    // [30, 10]
+		checkList(t, l, []int{30, 10})
+
+		for i := l.Front(); i != nil; i = i.Next {
+			l.Remove(i) // []
+		}
+		checkList(t, l, []int{})
+
+		l.PushFront(20) // [20]
+		checkList(t, l, []int{20})
+	})
+}
+
+func checkList(t *testing.T, l List, es []int) {
+	require.Equal(t, len(es), l.Len())
+
+	elems := make([]int, 0, l.Len())
+	for i := l.Front(); i != nil; i = i.Next {
+		elems = append(elems, i.Value.(int))
+	}
+	require.Equal(t, es, elems)
 }
