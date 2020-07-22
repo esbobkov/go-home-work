@@ -60,6 +60,8 @@ func (c *lruCache) Get(key Key) (interface{}, bool) {
 }
 
 func (c *lruCache) Clear() {
+	c.mx.Lock()
+	defer c.mx.Unlock()
 	for k, v := range c.items {
 		delete(c.items, k)
 		c.queue.Remove(v)

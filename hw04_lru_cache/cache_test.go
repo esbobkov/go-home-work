@@ -124,6 +124,7 @@ func TestCacheMultithreading(t *testing.T) {
 		defer wg.Done()
 		for i := 0; i < 1_000_000; i++ {
 			c.Set(Key(strconv.Itoa(i)), i)
+			c.Clear()
 		}
 	}()
 
