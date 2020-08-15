@@ -1,5 +1,9 @@
-module github.com/fixme_my_friend/hw06_pipeline_execution
+module github.com/esbobkov/go-home-work/hw06_pipeline_execution
 
 go 1.14
 
-require github.com/stretchr/testify v1.5.1
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/stretchr/testify v1.6.1
+	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 // indirect
+)
