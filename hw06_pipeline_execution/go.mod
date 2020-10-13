@@ -1,6 +1,6 @@
 module github.com/esbobkov/go-home-work/hw06_pipeline_execution
 
-go 1.14
+go 1.15
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
